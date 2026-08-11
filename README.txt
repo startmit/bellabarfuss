@@ -76,11 +76,21 @@ Live-Gang von einer Fachanwält:in prüfen lassen.
 
 
 ──────────────────────────────────────────────
-D) EIGENE DOMAIN (optional, später)
+D) EIGENE DOMAIN: bellabarfuss.com
 ──────────────────────────────────────────────
 
-Wenn du z. B. "bellabarfuss.de" statt der github.io-Adresse
-willst: Domain kaufen, dann in GitHub unter Settings → Pages
-→ "Custom domain" eintragen und beim Domain-Anbieter einen
-CNAME-Eintrag auf DEINNAME.github.io setzen. Sag Bescheid,
-dann gehen wir das zusammen durch.
+Die Domain bellabarfuss.com (bei IONOS) verbindest du mit
+deiner GitHub-Seite. Die genaue Schritt-für-Schritt-Anleitung
+mit allen DNS-Einträgen liegt als eigenes PDF bei:
+
+   "Domain_Einrichtung_IONOS_GitHub.pdf"
+
+Kurzfassung:
+  1. GitHub → Settings → Pages → Custom domain: bellabarfuss.com
+  2. IONOS → DNS: vier A-Records (@) auf die GitHub-IPs
+     185.199.108.153 / .109.153 / .110.153 / .111.153
+  3. IONOS → DNS: ein CNAME (www) auf DEINNAME.github.io
+  4. Warten, dann bei GitHub "Enforce HTTPS" aktivieren.
+
+Die Datei CNAME (mit Inhalt "bellabarfuss.com") ist bereits
+im Paket enthalten und muss mit hochgeladen werden.

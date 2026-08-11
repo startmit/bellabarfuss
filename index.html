@@ -36,11 +36,25 @@
             (Quiz gross oben, Telegram, OnlyFans-Direktweg)
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Schriften lokal eingebunden (kein Google-Transfer, DSGVO-sauber) -->
 
 <style>
+/* ===== Lokale Schriften (Variable Fonts, alle Gewichte) ===== */
+@font-face{
+  font-family:'Cormorant Garamond';
+  src:url('assets/fonts/cormorant.woff2') format('woff2');
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Cormorant Garamond';
+  src:url('assets/fonts/cormorant-italic.woff2') format('woff2');
+  font-weight:400 700;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Manrope';
+  src:url('assets/fonts/manrope.woff2') format('woff2');
+  font-weight:300 800;font-style:normal;font-display:swap;
+}
 :root{
   /* ◆ FARBPALETTE (Kunde: sinnlich) */
   --espresso:#66451A;      /* Primary */
@@ -241,7 +255,7 @@ html{-webkit-text-size-adjust:100%}
 <section id="hero" class="section">
   <div class="bg-media">
     <!-- ◆ HERO-VIDEO: stumm, loop, warm geradet. Poster lädt sofort als Fallback. -->
-    <video autoplay muted loop playsinline poster="assets/hero_lux_poster.jpg">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/hero_lux_poster.jpg">
       <source src="assets/hero_lux.mp4" type="video/mp4">
     </video>
   </div>
@@ -389,6 +403,18 @@ html{-webkit-text-size-adjust:100%}
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* iOS-Fallback: Video aktiv starten, falls Autoplay blockiert wird */
+(function(){
+  var v=document.getElementById('heroVideo');
+  if(!v)return;
+  v.muted=true; v.setAttribute('muted','');
+  function tryPlay(){ var pr=v.play(); if(pr&&pr.catch){pr.catch(function(){}); } }
+  v.addEventListener('loadeddata',tryPlay);
+  tryPlay();
+  // Falls iOS erst bei erster Berührung erlaubt: einmalig beim ersten Tap starten
+  document.addEventListener('touchstart',function once(){ tryPlay(); document.removeEventListener('touchstart',once); },{passive:true});
+})();
 
 /* ---------- LINKS an einer Stelle pflegen ◆ ---------- */
 const LINKS = {
