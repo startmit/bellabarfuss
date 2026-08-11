@@ -1,0 +1,13 @@
+{
+  "name": "bellabarfuss7",
+  "short_name": "bellabarfuss7",
+  "description": "Barfuß. Feminin. Frei.",
+  "icons": [
+    { "src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#66451A",
+  "background_color": "#FFF9F5",
+  "display": "standalone",
+  "start_url": "./"
+}
